@@ -1,0 +1,3 @@
+[submodule "lib/twitterlibphp"]
+	path = lib/twitterlibphp
+	url = http://github.com/jdp/twitterlibphp.git
