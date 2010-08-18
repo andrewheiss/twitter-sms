@@ -1,0 +1,8 @@
+.rsync
+.git
+.git/*
+.gitignore
+.DS_Store
+Rakefile
+config.php
+db/db.db

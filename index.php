@@ -1,21 +1,24 @@
 <?php
+	phpinfo();
+	exit;
+	$config_dir = $_SERVER['DOCUMENT_ROOT'].'/../protected';
 	require("twitterlibphp/twitter.lib.php");
-	require("config.php");
+	require($config_dir."/sms_config.php");
 
 	// Database configuration
-	$db = new PDO('sqlite:'.dirname(__FILE__).'/db/db.db');
+	// $db = new PDO('sqlite:'.dirname(__FILE__).'/db/db.db');
+	$db = new PDO('sqlite:'.$config_dir.'/sms.db');
 	$query = $db->query("SELECT * FROM id_tracker ORDER BY last_id DESC LIMIT 1");
 	$result = $query->fetch(PDO::FETCH_ASSOC);
 	
 	if ($result) {
 		$last_id = $result['last_id'];
 	} else {
-		$last_id = 1;
+		$last_id = 19412551379;
 	}
 
 	$twitter = new Twitter($username, $password);
-	// $check = $twitter->getMentions(array('since_id'=>$last_id));
-	$check = $twitter->getMentions(array('since_id'=>'19412551379'));
+	$check = $twitter->getMentions(array('since_id'=>$last_id));
 	$mentions = new SimpleXMLElement($check);
 
 	if ($mentions->status) {
@@ -28,9 +31,12 @@
 		// Output the most recent mentions in reverse order and e-mail them to myself
 		foreach ($a as $status) {
 			$message = $status->user->name . " (" . $status->user->screen_name . "): " . $status->text;
-			echo $message . "will be sent to $email";
+			$subject = "Tweet from " . $status->user->name;
+			$headers = "From: no-reply@andrewheiss.com";
 			
+			// wordwrap() needed?
 			
+			mail($email, $subject, $message, $headers);
 			
 			$last_id = $status->id;
 		}
@@ -41,7 +47,7 @@
 		$query->execute();
 	} else {
 		// Nothing new…
-		echo "No new mentions";
+		// echo "No new mentions";
 	}
 
 ?>
