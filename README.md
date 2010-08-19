@@ -20,7 +20,7 @@ This script rudimentarily allows you to receive notification of Twitter @replies
 
 Most American cell phone providers have special e-mail addresses you can use to receive e-mail. Check this [comprehensive list](http://sms411.net/how-to-send-email-to-a-phone/) for specific information for your carrier.
 
-Many carriers also have a web interface to give you more control over your e-mail-to-SMS address. For example, AT&T allows you to use an alias instead of your phone number, as well as giving you black and white lists for address filtering, at their [message center](http://mymessages.wireless.att.com/)
+Many carriers also have a web interface to give you more control over your e-mail-to-SMS address. For example, AT&T allows you to use an alias instead of your phone number, as well as giving you black and white lists for address filtering, at their [message center](http://mymessages.wireless.att.com/).
 
 If, for some reason, your carrier's spam filter blocks your hosts e-mails, whitelist your sending address. If that still doesn't work, create a Gmail account and use it for `$email`. Then use Gmail's settings to forward all mail to your special SMS address. It's a super hacky roundabout pseudo fix, but it works.
 
