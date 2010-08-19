@@ -23,6 +23,7 @@
 		$get_last = $twitter->getMentions(array('count'=>1));
 		$last = new SimpleXMLElement($get_last);
 		$last_id = (int)$last->status->id;
+		echo "Database has been populated";
 	}
 	
 	// Check Twitter for any mentions since the last stored one
@@ -43,8 +44,8 @@
 			$headers = "From: no-reply@andrewheiss.com";
 			
 			// FUTURE: wordwrap() needed for better line breaking on the phone screen?
-			echo $message . "<br />";
-			//mail($email, $subject, $message, $headers);
+			//echo $message . "<br />";
+			mail($email, $subject, $message, $headers);
 			
 			$last_id = $status->id;
 		}

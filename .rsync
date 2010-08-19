@@ -2,7 +2,6 @@
 .git
 .git/*
 .gitignore
+.gitmodules
 .DS_Store
 Rakefile
-config.php
-db/db.db
